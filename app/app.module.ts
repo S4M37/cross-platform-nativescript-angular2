@@ -4,13 +4,18 @@ import {AppComponent} from "./app.component";
 import {NativeScriptFormsModule} from "nativescript-angular/forms";
 import {UserService} from "./shared/user/user.service";
 import {NativeScriptHttpModule} from "nativescript-angular/http";
+import {NativeScriptRouterModule} from "nativescript-angular/router";
+import {routes, navigatableComponents} from "./app.routing";
 
 @NgModule({
     imports: [NativeScriptModule,
         NativeScriptFormsModule,
-        NativeScriptHttpModule],
+        NativeScriptHttpModule,
+        NativeScriptRouterModule,
+        NativeScriptRouterModule.forRoot(routes)],
     providers: [UserService],
-    declarations: [AppComponent],
+    declarations: [AppComponent,
+        ...navigatableComponents],
     bootstrap: [AppComponent]
 })
 export class AppModule {

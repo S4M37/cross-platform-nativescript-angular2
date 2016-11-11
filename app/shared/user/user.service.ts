@@ -4,7 +4,7 @@ import "rxjs/add/operator/map";
 import {User} from "./user";
 import {Config} from "../config";
 import {Http, Headers} from "@angular/http";
-import { Observable } from "rxjs/Rx";
+import {Observable} from "rxjs/Rx";
 @Injectable()
 export class UserService {
     constructor(private http: Http) {
@@ -13,13 +13,31 @@ export class UserService {
     register(user: User) {
         let headers = new Headers();
         headers.append("Content-Type", "application/json");
-        console.log("Sign in with emal:" + user.email);
+        console.log("Sign up with emal:" + user.email + " and password : " + user.password);
         return this.http.post(Config.apiUrl + "Users",
             JSON.stringify({
                 Username: user.email,
                 Email: user.email,
                 Password: user.password
             }), {headers: headers})
+            .catch(this.handleErrors);
+    }
+
+
+    login(user: User) {
+        let headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        console.log("Sign in with emal:" + user.email + " and password : " + user.password);
+        return this.http.post(Config.apiUrl + "oauth/token",
+            JSON.stringify({
+                username: user.email,
+                password: user.password,
+                grant_type: "password"
+            }), {headers: headers})
+            .map(response => response.json())
+            .do(data => {
+                Config.token = data.Result.access_token;
+            })
             .catch(this.handleErrors);
     }
 
