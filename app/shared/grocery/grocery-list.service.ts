@@ -18,7 +18,6 @@ export class GroceryListService {
             headers: headers
         })
             .map(res => {
-                console.log(JSON.stringify(res.json()));
 
                 return res.json();
             })
@@ -27,7 +26,6 @@ export class GroceryListService {
                 data.Result.forEach((grocery) => {
                     groceryList.push(new Grocery(grocery.Id, grocery.Name));
                 });
-                console.log(JSON.stringify(data));
                 return groceryList;
             })
             .catch(this.handleErrors);

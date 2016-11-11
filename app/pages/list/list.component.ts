@@ -2,9 +2,11 @@ import {Component, OnInit, ElementRef, ViewChild} from "@angular/core";
 import {GroceryListService} from "../../shared/grocery/grocery-list.service";
 import {Grocery} from "../../shared/grocery/grocery";
 import {TextField} from "ui/text-field";
+import * as SocialShare from "nativescript-social-share";
+
 @Component({
     selector: "list",
-    templateUrl: "pages/list/list.html",
+    templateUrl: "pages/list/list.component.html",
     styleUrls: ["pages/list/list-common.css", "pages/list/list.css"],
     providers: [GroceryListService]
 })
@@ -13,16 +15,21 @@ export class ListComponent implements OnInit {
     grocery = "";
     @ViewChild("groceryTextField") groceryTextField: ElementRef;
 
+    listLoaded = false;
+    isLoading = true;
+
     constructor(private groceryListService: GroceryListService) {
     }
 
     ngOnInit() {
-        console.log("List of Groceries Component")
         this.groceryListService.load()
             .subscribe((loadedGroceries)=> {
                 loadedGroceries.forEach((groceryObject)=> {
                     this.groceryList.unshift(groceryObject)
-                })
+                });
+                console.log(JSON.stringify(this.groceryList));
+                this.isLoading = false;
+                this.listLoaded = true;
             });
     }
 
@@ -50,6 +57,15 @@ export class ListComponent implements OnInit {
                     this.grocery = "";
                 }
             )
+    }
+
+    share() {
+        let list = [];
+        for (let i = 0, size = this.groceryList.length; i < size; i++) {
+            list.push(this.groceryList[i].name);
+        }
+        let listString = list.join(", ").trim();
+        SocialShare.shareText(listString);
     }
 
 }
