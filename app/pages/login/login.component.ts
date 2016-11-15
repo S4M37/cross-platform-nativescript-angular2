@@ -3,7 +3,7 @@ import {User} from "../../shared/user/user";
 import {UserService} from "../../shared/user/user.service";
 import {Router} from "@angular/router";
 import {Page} from "ui/page";
-import {View} from "ui/core/view";
+import {Image} from "ui/image";
 
 @Component({
     selector: "login",
@@ -15,10 +15,11 @@ export class LoginComponent implements OnInit {
     isLoggingIn: boolean;
 
     @ViewChild("container") container: ElementRef;
+    @ViewChild("login_bg") loginBg: ElementRef;
 
     constructor(private userService: UserService,
                 private router: Router,
-                private  page: Page) {
+                private page: Page) {
     }
 
     ngOnInit(): void {
@@ -26,7 +27,6 @@ export class LoginComponent implements OnInit {
         this.user.email = "vynder@vynd.com";
         this.isLoggingIn = true;
         this.page.actionBarHidden = true;
-        this.page.backgroundImage = "res://bg_login";
     }
 
     submit(): void {
@@ -43,12 +43,12 @@ export class LoginComponent implements OnInit {
 
     toggleDisplay() {
         this.isLoggingIn = !this.isLoggingIn;
-        let container = <View>this.container.nativeElement;
         /*container.animate({
          backgroundColor: this.isLoggingIn ? new Color("white") : new Color("#301217"),
          duration: 200
          });*/
-        this.page.animate({
+        let loginBg: Image = <Image>this.loginBg.nativeElement;
+        loginBg.animate({
             scale: this.isLoggingIn ? ({
                 x: 1.0,
                 y: 1.0
@@ -75,5 +75,9 @@ export class LoginComponent implements OnInit {
                 },
                 () => alert("Unfortunately we were unable to create your account.")
             );
+    }
+
+    goToRoulette() {
+        this.router.navigate(["/roulette"]);
     }
 }

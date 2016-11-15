@@ -1,0 +1,19 @@
+<ActionBar title="Roulette">
+    <NavigationButton android.systemIcon="ic_menu_back" (tap)="onNavBtnTap()"></NavigationButton>
+</ActionBar>
+
+<GridLayout #container rows="*" columns="*">
+
+    <Image #rouletteGreenBars src="res://aouds_verts" [class.open_bars]="isRouletteRunning"
+           [class.close_bars]="!isRouletteRunning" row="0"></Image>
+    <Image #rouletteOrangeBars src="res://aouds_orange" [class.open_bars]="isRouletteRunning"
+           [class.close_bars]="!isRouletteRunning" row="0"></Image>
+
+    <Image #rouletteButton src="res://roulette_button" row="0" (tap)="triggerRoulette()"
+           class="roulette-main-button"></Image>
+
+</GridLayout>
+
+
+
+

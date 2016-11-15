@@ -1,20 +1,36 @@
 StackLayout {
-    margin-left: 30;
-    margin-right: 30;
+    margin-left: 8%;
+    margin-right: 8%;
     padding-bottom: 15;
     background-color: white;
+    width: 84%;
+    margin-top: 20%;
 }
-Image {
+
+.logo {
     margin-top: 5;
     margin-bottom: 20;
 }
+
 Button, TextField {
     margin-left: 16;
     margin-right: 16;
     margin-bottom: 10;
 }
+
 .submit-button {
     background-color: #CB1D00;
     color: white;
     margin-top: 20;
 }
+
+.roulette-button {
+    background-color: #ef4a23;
+    color: white;
+}
+
+.login_bg {
+    width: 100%;
+    height: 100%;
+}
+

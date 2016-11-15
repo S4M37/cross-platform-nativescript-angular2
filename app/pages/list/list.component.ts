@@ -43,6 +43,7 @@ export class ListComponent implements OnInit {
         let textField = <TextField>this.groceryTextField.nativeElement;
         textField.dismissSoftInput();
 
+
         this.groceryListService.add(this.grocery)
             .subscribe(
                 groceryObject => {

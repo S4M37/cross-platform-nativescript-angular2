@@ -1,0 +1,47 @@
+Image {
+    margin: 5%;
+}
+
+.open_bars {
+    animation-name: open_animation;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes open_animation {
+    from {
+        transform: scale(0, 0);
+    }
+    to {
+        transform: scale(1.0, 1.0);
+    }
+}
+
+.close_bars {
+    visibility: collapse;
+}
+
+Button {
+    width: auto;
+    padding-left: 10;
+    padding-right: 10;
+    margin-top: 10;
+}
+
+.roulette-main-button {
+    animation-name: roulette_button_animation;
+    animation-iteration-count: infinite;
+    animation-duration: 2s;
+}
+
+@keyframes roulette_button_animation {
+    0% {
+        transform: scale(1.0, 1.0);
+    }
+    50% {
+        transform: scale(0.9, 0.9);
+    }
+    100% {
+        transform: scale(1.0, 1.0);
+    }
+}

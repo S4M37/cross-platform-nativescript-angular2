@@ -1,9 +1,19 @@
-<StackLayout #container>
-    <Image src="res://logo_login" stretch="none" horizontalAlignment="center"></Image>
-    <TextField hint="Email Address" keyboardType="email" [(ngModel)]="user.email"
-               autocorrect="false" autocapitalizationType="none"></TextField>
-    <TextField hint="Password" secure="true" [(ngModel)]="user.password"></TextField>
+<AbsoluteLayout>
+    
+    <Image #login_bg src="res://bg_login"></Image>
 
-    <Button [text]="isLoggingIn ? 'Sign in' : 'sign up'" class="submit-button" (tap)="submit()"></Button>
-    <Button [text]="isLoggingIn ? 'Sign up' :'Back to login'" (tap)="toggleDisplay()"></Button>
-</StackLayout>
+    <StackLayout #container>
+
+        <Image #logo src="res://logo_login" stretch="none" horizontalAlignment="center"></Image>
+
+        <TextField hint="Email Address" keyboardType="email" [(ngModel)]="user.email"
+                   autocorrect="false" autocapitalizationType="none"></TextField>
+        <TextField hint="Password" secure="true" [(ngModel)]="user.password"></TextField>
+
+        <Button [text]="isLoggingIn ? 'Sign in' : 'sign up'" class="submit-button" (tap)="submit()"></Button>
+        <Button [text]="isLoggingIn ? 'Sign up' :'Back to login'" (tap)="toggleDisplay()"></Button>
+        <Button text="Roulette" class="roulette-button" (tap)="goToRoulette()"></Button>
+
+    </StackLayout>
+
+</AbsoluteLayout>
